@@ -3,6 +3,7 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -17,15 +18,11 @@ import {
   CurrencyDollarIcon,
   PencilSimpleIcon,
   GearIcon,
+  UserCircleIcon,
 } from "@phosphor-icons/react";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-} from "./ui/breadcrumb";
+import { NavUser } from "./ui/nav-user";
 
 type NavItem = {
   title: string;
@@ -33,8 +30,16 @@ type NavItem = {
   icon?: React.ElementType;
 };
 
+const example_data = {
+  user: {
+    name: "John Doe",
+    email: "john@example.com",
+    avatar: "/avatars/john-doe.png",
+  },
+};
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const data = {
+  const dashboard_data = {
     navMain: [
       {
         title: "Main Navigation",
@@ -84,7 +89,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <Separator className="my-2" />
 
           <SidebarContent>
-            {data.navMain.map((item) => (
+            {dashboard_data.navMain.map((item) => (
               <SidebarGroup key={item.title}>
                 <SidebarGroupContent>
                   <SidebarMenu>
@@ -105,6 +110,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarContent>
         </SidebarMenu>
       </SidebarHeader>
+      <div className="flex-1" />
+      <SidebarFooter>
+        <Separator className="mb-2" />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <NavUser user={example_data.user} />
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
