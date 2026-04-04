@@ -3,8 +3,8 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Home() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-    </SidebarProvider>
+    <div className="">
+      <main>Home</main>
+    </div>
   );
 }
